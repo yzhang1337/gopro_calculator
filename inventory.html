@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GoPro Setup Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .item-list {
+            width: 30%;
+        }
+
+        .item {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>GoPro Setup Calculator</h1>
+    <p>
+        Currently there is a deal on the Hero Black 11 Mini at GoPro.com. I have no experience with this particular camera as we used/using GoPro 8/9 just because that is what was 'out' then, but now we are up to GoPro 11.
+
+        The mini seems like a good deal though, the only major con is that it does NOT have a swappable battery, which might be inconvenient but we could also just run a charging cable to it instead of swapping batteries.
+
+        The benefit of using any GoPro model 10 or greater is that the maximum microSD card allowed is 4x the GoPro 8/9 (256 GB) at 1TB.
+
+        Obviously there may be some cost/benefit to be done here depending on which setup scales better for any given situation so feel free to play around with the calculator to get a sense of what might be cheapest now (July 2023) versus best long-term solution.
+    </p>
+
+    <p>
+        * Note: For reference... 256GB records ~6.5 hours of video at 4k@60FPS OR ~10.5 hours of video at 1080p@60FPS and 1TB records ~26 hours of video at 4k@60FPS OR ~42 hours of video at 1080p@60FPS. Obviously, microSD cards of any size below 1TB is also compatible with the Hero 10/11. 
+    </p>
+
+
+    <div class="container">
+        <!-- Left column -->
+        <div id="item-list-left" class="item-list">
+            <h2>Hero 11 Black Mini</h2>
+            <div class="item">
+                <label for="hero">Hero 11 Black Mini:</label>
+                <input type="number" id="hero" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="sandisk">SanDisk microSD 1TB:</label>
+                <input type="number" id="sandisk" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="long-mount-left">Long Mount:</label>
+                <input type="number" id="long-mount-left" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="short-mount-left">Short Mount:</label>
+                <input type="number" id="short-mount-left" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="card-reader-left">Card Reader:</label>
+                <input type="number" id="card-reader-left" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="backpack-left">Backpack:</label>
+                <input type="number" id="backpack-left" value="0" min="0">
+            </div>
+            <button onclick="calculateSumLeft()">Calculate Total</button>
+            <p id="total-left"></p>
+        </div>
+
+        <!-- Middle column -->
+        <div id="item-list-middle" class="item-list">
+            <h2>Hero 10</h2>
+            <div class="item">
+                <label for="gopro">Hero 10:</label>
+                <input type="number" id="gopro" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="sandisk-middle">SanDisk microSD 1TB:</label>
+                <input type="number" id="sandisk-middle" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="long-mount-middle">Long Mount:</label>
+                <input type="number" id="long-mount-middle" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="short-mount-middle">Short Mount:</label>
+                <input type="number" id="short-mount-middle" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="card-reader-middle">Card Reader:</label>
+                <input type="number" id="card-reader-middle" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="backpack-middle">Backpack:</label>
+                <input type="number" id="backpack-middle" value="0" min="0">
+            </div>
+            <button onclick="calculateSummiddle()">Calculate Total</button>
+            <p id="total-middle"></p>
+        </div>
+
+        <div id="item-list-right" class="item-list">
+            <h2>Hero 9</h2>
+            <div class="item">
+                <label for="gopro9">Hero 9:</label>
+                <input type="number" id="gopro9" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="microsd-right">microSD 256 GB:</label>
+                <input type="number" id="microsd-right" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="long-mount-right">Long Mount:</label>
+                <input type="number" id="long-mount-right" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="short-mount-right">Short Mount:</label>
+                <input type="number" id="short-mount-right" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="card-reader-right">Card Reader:</label>
+                <input type="number" id="card-reader-right" value="0" min="0">
+            </div>
+            <div class="item">
+                <label for="backpack-right">Backpack:</label>
+                <input type="number" id="backpack-right" value="0" min="0">
+            </div>
+            <button onclick="calculateSumRight()">Calculate Total</button>
+            <p id="total-right"></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateSumLeft() {
+            var hero = document.getElementById('hero').value * 200;
+            var sandisk = document.getElementById('sandisk').value * 105;
+            var longMountLeft = document.getElementById('long-mount-left').value * 25;
+            var shortMountLeft = document.getElementById('short-mount-left').value * 15;
+            var cardReaderLeft = document.getElementById('card-reader-left').value * 20;
+            var backpackLeft = document.getElementById('backpack-left').value * 30;
+
+            var totalLeft = hero + sandisk + longMountLeft + shortMountLeft + cardReaderLeft + backpackLeft;
+
+            document.getElementById('total-left').textContent = 'Total: $' + totalLeft;
+        }
+
+        function calculateSummiddle() {
+            var gopro = document.getElementById('gopro').value * 350;
+            var sandisk = document.getElementById('sandisk-middle').value * 105;
+            var longMountmiddle = document.getElementById('long-mount-middle').value * 25;
+            var shortMountmiddle = document.getElementById('short-mount-middle').value * 15;
+            var cardReadermiddle = document.getElementById('card-reader-middle').value * 20;
+            var backpackmiddle = document.getElementById('backpack-middle').value * 30;
+
+            var totalmiddle = gopro + sandisk + longMountmiddle + shortMountmiddle + cardReadermiddle + backpackmiddle;
+
+            document.getElementById('total-middle').textContent = 'Total: $' + totalmiddle;
+        }
+
+         function calculateSumRight() {
+            var gopro9 = document.getElementById('gopro9').value * 250;
+            var microsdRight = document.getElementById('microsd-right').value * 23;
+            var longMountRight = document.getElementById('long-mount-right').value * 25;
+            var shortMountRight = document.getElementById('short-mount-right').value * 15;
+            var cardReaderRight = document.getElementById('card-reader-right').value * 20;
+            var backpackRight = document.getElementById('backpack-right').value * 30;
+
+            var totalRight = gopro9 + microsdRight + longMountRight + shortMountRight + cardReaderRight + backpackRight;
+
+            document.getElementById('total-right').textContent = 'Total: $' + totalRight;
+        }
+    </script>
+</body>
+</html>
